@@ -9,29 +9,24 @@ module.exports = {
   ],
   parserOptions: {
     project: "./tsconfig.eslint.json",
+    tsconfigRootDir: __dirname,
   },
   ignorePatterns: ["**/artifacts", "**/coverage"],
   rules: {
+    "@typescript-eslint/comma-dangle": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/restrict-template-expressions": "off",
-    "@typescript-eslint/no-unsafe-return": "off",
-    "@typescript-eslint/require-await": "off",
-    "@typescript-eslint/restrict-plus-operands": "off",
-    "import/extensions": "off",
-    "no-any": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
-    // helps code clarity
-    "@typescript-eslint/comma-dangle": "off",
-    // we prefer double quotes and backticks
-    "@typescript-eslint/quotes": "off",
-    // we use it for scripts
-    "no-console": "off",
-    // we use it for tests
-    "func-names": "off",
-    // we use it for tests
-    "import/no-extraneous-dependencies": "off",
-    // we use it for tests
+    "@typescript-eslint/no-unsafe-return": "off",
     "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/quotes": "off",
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/restrict-plus-operands": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "func-names": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-any": "off",
+    "no-console": "off",
   },
 };

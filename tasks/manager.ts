@@ -16,7 +16,7 @@ task("manager", "Get info about manager contract's address").setAction(
     const manager = (await ethers.getContractAt(
       "UbiquityAlgorithmicDollarManager",
       managerAdr
-    )) as UbiquityAlgorithmicDollarManager;
+    )) as unknown as UbiquityAlgorithmicDollarManager;
     const mgrtwapOracleAddress = await manager.twapOracleAddress();
     const mgrdebtCouponAddress = await manager.debtCouponAddress();
     const mgrDollarTokenAddress = await manager.dollarTokenAddress();

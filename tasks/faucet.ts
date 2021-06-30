@@ -26,14 +26,18 @@ task("faucet", "Sends ETH and tokens to an address")
       const manager = (await ethers.getContractAt(
         "UbiquityAlgorithmicDollarManager",
         taskArgs.manager
-      )) as UbiquityAlgorithmicDollarManager;
+      )) as unknown as UbiquityAlgorithmicDollarManager;
+
       const uADAdr = await manager.dollarTokenAddress();
-      const uADtoken = (await ethers.getContractAt("ERC20", uADAdr)) as ERC20;
+      const uADtoken = (await ethers.getContractAt(
+        "ERC20",
+        uADAdr
+      )) as unknown as ERC20;
       const metaPoolAddr = await manager.stableSwapMetaPoolAddress();
       const curveLPtoken = (await ethers.getContractAt(
         "ERC20",
         metaPoolAddr
-      )) as ERC20;
+      )) as unknown as ERC20;
 
       const [sender] = await ethers.getSigners();
 
@@ -58,7 +62,7 @@ task("faucet", "Sends ETH and tokens to an address")
       const crvToken = (await ethers.getContractAt(
         "ERC20",
         acc.curve3CrvToken
-      )) as ERC20;
+      )) as unknown as ERC20;
       const tx4 = await crvToken.transfer(
         taskArgs.receiver,
         ethers.utils.parseEther("100")

@@ -10,10 +10,9 @@
     "prelint": "yarn compile",
     "lint": "run-p compile lint:*",
     "lint:sol": "solhint 'contracts/**/*.sol' --fix",
-    "lint:eslint": "eslint . --ext .js,.ts --fix",
+    "lint:eslint": "eslint . --ext .ts --fix",
     "lint:prettier": "prettier --write .",
-    "_pretypechain": "yarn add @typechain/ethers-v5 -D",
-    "_typechain": "node ./node_modules/@typechain/ethers-v5/dist/index.js --target ethers-v5",
+    "_typechain": "typechain --outDir artifacts/types --target ethers-v5",
     "_compile": "TS_NODE_TRANSPILE_ONLY=1 hardhat compile"
   },
   "husky": {
@@ -94,7 +93,9 @@
     "nodemon": "^2.0.8",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.13",
     "solhint": "^3.3.3",
+    "solhint-plugin-prettier": "^0.0.5",
     "solidity-coverage": "^0.7.16",
     "solidity-linked-list": "^5.0.0",
     "ts-generator": "^0.1.1",

@@ -33,22 +33,22 @@ task("priceReset", "PriceReset can push uAD price lower or higher")
       const manager = (await ethers.getContractAt(
         "UbiquityAlgorithmicDollarManager",
         "0x4DA97a8b831C345dBe6d16FF7432DF2b7b776d98"
-      )) as UbiquityAlgorithmicDollarManager;
+      )) as unknown as UbiquityAlgorithmicDollarManager;
       const uADAdr = await manager.dollarTokenAddress();
       const uAD = (await ethers.getContractAt(
         "UbiquityAlgorithmicDollar",
         uADAdr
-      )) as UbiquityAlgorithmicDollar;
+      )) as unknown as UbiquityAlgorithmicDollar;
       const curveToken = (await ethers.getContractAt(
         "ERC20",
         curve3CrvToken
-      )) as ERC20;
+      )) as unknown as ERC20;
       const metaPoolAddr = await manager.stableSwapMetaPoolAddress();
       console.log(`---metaPoolAddr:${metaPoolAddr}  `);
       const metaPool = (await ethers.getContractAt(
         "IMetaPool",
         metaPoolAddr
-      )) as IMetaPool;
+      )) as unknown as IMetaPool;
       const uadBalanceBefore = await uAD.balanceOf(adminAdr);
       const crvBalanceBefore = await curveToken.balanceOf(adminAdr);
       const metapoolLPBalanceBefore = await metaPool.balanceOf(adminAdr);

@@ -36,7 +36,6 @@ contract DollarMintingCalculator is IDollarMintingCalculator {
                         .fromUInt()
                         .div(_one)
                 )
-            )
-                .toUInt();
+            ).toUInt();
     }
 }

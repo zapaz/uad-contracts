@@ -23,19 +23,19 @@ task("price", "get information about UAD price").setAction(
     const manager = (await ethers.getContractAt(
       "UbiquityAlgorithmicDollarManager",
       "0x4DA97a8b831C345dBe6d16FF7432DF2b7b776d98"
-    )) as UbiquityAlgorithmicDollarManager;
+    )) as unknown as UbiquityAlgorithmicDollarManager;
     const uADAdr = await manager.dollarTokenAddress();
 
     const uAD = (await ethers.getContractAt(
       "UbiquityAlgorithmicDollar",
       uADAdr
-    )) as UbiquityAlgorithmicDollar;
+    )) as unknown as UbiquityAlgorithmicDollar;
     const metaPoolAddr = await manager.stableSwapMetaPoolAddress();
     console.log(`---metaPoolAddr:${metaPoolAddr}  `);
     const metaPool = (await ethers.getContractAt(
       "IMetaPool",
       metaPoolAddr
-    )) as IMetaPool;
+    )) as unknown as IMetaPool;
 
     let curveFactory = "";
     let DAI = "";
@@ -48,7 +48,7 @@ task("price", "get information about UAD price").setAction(
     const curvePoolFactory = (await ethers.getContractAt(
       "ICurveFactory",
       curveFactory
-    )) as ICurveFactory;
+    )) as unknown as ICurveFactory;
 
     const indices = await curvePoolFactory.get_coin_indices(
       metaPool.address,
@@ -88,7 +88,7 @@ task("price", "get information about UAD price").setAction(
     const twapOracle = (await ethers.getContractAt(
       "TWAPOracle",
       mgrtwapOracleAddress
-    )) as TWAPOracle;
+    )) as unknown as TWAPOracle;
     const oraclePriceuAD = await twapOracle.consult(uAD.address);
     const oraclePrice3Crv = await twapOracle.consult(curve3CrvToken);
     console.log(`---TWAPOracle:${mgrtwapOracleAddress}  `);
@@ -103,7 +103,7 @@ task("price", "get information about UAD price").setAction(
       const dollarMintingCalculator = (await ethers.getContractAt(
         "DollarMintingCalculator",
         dollarMintingCalculatorAddress
-      )) as DollarMintingCalculator;
+      )) as unknown as DollarMintingCalculator;
       const dollarsToMint = await dollarMintingCalculator.getDollarsToMint();
 
       console.log(`

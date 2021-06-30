@@ -17,19 +17,19 @@ task("incentive", "Sends ETH and tokens to an address").setAction(
     const manager = (await ethers.getContractAt(
       "UbiquityAlgorithmicDollarManager",
       "0x4DA97a8b831C345dBe6d16FF7432DF2b7b776d98"
-    )) as UbiquityAlgorithmicDollarManager;
+    )) as unknown as UbiquityAlgorithmicDollarManager;
     const uADAdr = await manager.dollarTokenAddress();
 
     const uAD = (await ethers.getContractAt(
       "UbiquityAlgorithmicDollar",
       uADAdr
-    )) as UbiquityAlgorithmicDollar;
+    )) as unknown as UbiquityAlgorithmicDollar;
     const metaPoolAddr = await manager.stableSwapMetaPoolAddress();
     const incentive = await uAD.incentiveContract(metaPoolAddr);
     const curveIncentive = (await ethers.getContractAt(
       "CurveUADIncentive",
       incentive
-    )) as CurveUADIncentive;
+    )) as unknown as CurveUADIncentive;
 
     console.log("curveIncentive   at:", incentive);
 

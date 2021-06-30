@@ -1,6 +1,5 @@
 {
   "files": ["./hardhat.config.ts"],
-  // "exclude": ["**/*/*.test.*", "./node_modules/*", "**/*/static", "tasks/"],
   "compilerOptions": {
     /* Basic Options */
     "incremental": true /* Enable incremental compilation */,

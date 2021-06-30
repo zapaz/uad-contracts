@@ -35,7 +35,7 @@ task("token", "Get info about tokens").setAction(
     const manager = (await ethers.getContractAt(
       "UbiquityAlgorithmicDollarManager",
       "0x4DA97a8b831C345dBe6d16FF7432DF2b7b776d98"
-    )) as UbiquityAlgorithmicDollarManager;
+    )) as unknown as UbiquityAlgorithmicDollarManager;
 
     const treasury = await manager.treasuryAddress();
     const uADAdr = await manager.dollarTokenAddress();
@@ -43,7 +43,7 @@ task("token", "Get info about tokens").setAction(
     const uAD = (await ethers.getContractAt(
       "UbiquityAlgorithmicDollar",
       uADAdr
-    )) as UbiquityAlgorithmicDollar;
+    )) as unknown as UbiquityAlgorithmicDollar;
 
     console.log(`
 uAD
@@ -59,12 +59,12 @@ total supply:${ethers.utils.formatEther(await uAD.totalSupply())} uAD
     const dollarMintingCalculator = (await ethers.getContractAt(
       "DollarMintingCalculator",
       dollarMintingCalculatorAddress
-    )) as DollarMintingCalculator;
+    )) as unknown as DollarMintingCalculator;
     const mgrtwapOracleAddress = await manager.twapOracleAddress();
     const twapOracle = (await ethers.getContractAt(
       "TWAPOracle",
       mgrtwapOracleAddress
-    )) as TWAPOracle;
+    )) as unknown as TWAPOracle;
     const oraclePriceuAD = await twapOracle.consult(uAD.address);
     if (oraclePriceuAD.gt(ethers.utils.parseEther("1"))) {
       const dollarsToMint = await dollarMintingCalculator.getDollarsToMint();
@@ -85,7 +85,7 @@ total supply:${ethers.utils.formatEther(await uAD.totalSupply())} uAD
     const uGOV = (await ethers.getContractAt(
       "UbiquityGovernance",
       uGOVAdr
-    )) as UbiquityGovernance;
+    )) as unknown as UbiquityGovernance;
 
     console.log(`
 Governance
@@ -101,7 +101,7 @@ total supply:${ethers.utils.formatEther(await uGOV.totalSupply())} UBQ
     const uAR = (await ethers.getContractAt(
       "UbiquityAutoRedeem",
       uARAdr
-    )) as UbiquityAutoRedeem;
+    )) as unknown as UbiquityAutoRedeem;
 
     console.log(`
 uAR
@@ -116,7 +116,7 @@ total supply:${ethers.utils.formatEther(await uAR.totalSupply())} uAR
     const bondingShare = (await ethers.getContractAt(
       "BondingShare",
       bondingShareAdr
-    )) as BondingShare;
+    )) as unknown as BondingShare;
 
     const treasuryIds = await bondingShare.holderTokens(treasury);
 
@@ -144,7 +144,7 @@ total supply:${bondingSharesInEth} bondingShares
     const debtCoupon = (await ethers.getContractAt(
       "DebtCoupon",
       debtCouponAdr
-    )) as DebtCoupon;
+    )) as unknown as DebtCoupon;
     const totOutstandingDebtInEth = ethers.utils.formatEther(
       await debtCoupon.getTotalOutstandingDebt()
     );
@@ -158,7 +158,7 @@ Total OutstandingDebt: ${totOutstandingDebtInEth} debtCoupon
     const metaPool = (await ethers.getContractAt(
       "IMetaPool",
       metaPoolAddr
-    )) as IMetaPool;
+    )) as unknown as IMetaPool;
     const metaPoolInEth = ethers.utils.formatEther(
       await metaPool.totalSupply()
     );
@@ -174,13 +174,13 @@ total supply:${metaPoolInEth} ${await metaPool.symbol()}`);
     const sushiSwap = (await ethers.getContractAt(
       "SushiSwapPool",
       sushiSwapAddr
-    )) as SushiSwapPool;
+    )) as unknown as SushiSwapPool;
 
     const pairAdr = await sushiSwap.pair();
     const ugovUadPair = (await ethers.getContractAt(
       "IUniswapV2Pair",
       pairAdr
-    )) as IUniswapV2Pair;
+    )) as unknown as IUniswapV2Pair;
     const reserves = await ugovUadPair.getReserves();
     const treasuryLPInEth = ethers.utils.formatEther(
       await ugovUadPair.balanceOf(treasury)

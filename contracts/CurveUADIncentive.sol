@@ -117,11 +117,10 @@ contract CurveUADIncentive is IIncentive {
             return 0;
         }
 
-        uint256 res =
-            _one
-                .sub(curPrice.fromUInt())
-                .mul((amount.fromUInt().div(_one)))
-                .toUInt();
+        uint256 res = _one
+        .sub(curPrice.fromUInt())
+        .mul((amount.fromUInt().div(_one)))
+        .toUInt();
         // returns (1- TWAP_Price) * amount.
         return res;
     }
@@ -150,7 +149,7 @@ contract CurveUADIncentive is IIncentive {
 
             require(
                 UbiquityAlgorithmicDollar(manager.dollarTokenAddress())
-                    .balanceOf(target) >= penalty + amount,
+                .balanceOf(target) >= penalty + amount,
                 "Dollar: balance too low to get penalized"
             );
             UbiquityAlgorithmicDollar(manager.dollarTokenAddress()).burnFrom(
