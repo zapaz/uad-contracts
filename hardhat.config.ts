@@ -6,8 +6,11 @@ import { HardhatUserConfig } from "hardhat/config";
 import "hardhat-typechain";
 import "hardhat-gas-reporter";
 import "solidity-coverage";
-import "./tasks/index";
 import "@nomiclabs/hardhat-etherscan";
+
+import("./tasks").catch((e) => {
+  console.error(e);
+});
 
 dotenv.config();
 const mnemonic = `${
